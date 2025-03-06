@@ -45,15 +45,25 @@ class ViewController: UIViewController,
     // CMD + click to learn more about what methods and properties you can use
     // Tip 2: You'll want to use and implement `resetBoardWithCurrentSettings` inside of BoardController.swift
     // in the function that you fire when the button is tapped
-    // START YOUR CODE HERE
-    // ...
-    // END YOUR CODE HERE
+    
+    let leftBarButtonItem = UIBarButtonItem(title: "Reset",
+                                               style: .done,
+                                               target: self,
+                                               action: #selector(didTapResetButton))
+    leftBarButtonItem.tintColor = .red
+    navigationItem.leftBarButtonItem = leftBarButtonItem
+    
   }
   
   @objc private func didTapSettingsButton() {
     performSegue(withIdentifier: segueIdentifier, sender: nil)
   }
-  
+    
+
+  @objc private func didTapResetButton() {
+      boardController.resetBoardWithCurrentSettings()
+    }
+    
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard segue.identifier == segueIdentifier else { return }
     let settingsViewController = segue.destination as! SettingsViewController
